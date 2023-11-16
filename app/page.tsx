@@ -1,36 +1,57 @@
+"use client"
+
+import { table } from 'console'
+import { Euphoria_Script } from 'next/font/google'
 import Image from 'next/image'
 
 export default function Home() {
-  return(
-    <>
-      <header className='bg-black text-white flex justify-between p-6 place-items-center shadow shadow-black'>
-        <h1 className=' text-3xl'>Hello World</h1>
-        <div className='flex place-items-center'>
-          <input type="search" className='text-black  rounded-lg p-4 ' placeholder='Search'/>
-          <nav>
-            <ul className='flex'>
-              <li className='p-2'>
-                <a href="#">exemplo</a>
-              </li>
-              <li className='p-2'>
-                <a href="#">exemplo</a>
-              </li>
-              <li className='p-2'>
-                <a href="#">exemplo</a>
-              </li>
-              <button className='bg-white text-black py-1 px-3 rounded-full hover:bg-blue-500 transi'>entrar</button>
-            </ul>
-          </nav>
-        </div>
-      </header>
-     <section className='text-center'>
-       <h1 className='text-white text-5xl  p-10'>Fazendo o primeiro site na Eliti</h1>
-       <button className='bg-white text-black py-1 px-3 rounded-full hover:bg-blue-500 transi'>Saiba mais</button>
-     </section>
-    
-    
-      
+  let tabela = ["", "", "", "", "", "", "", "", ""]
+  let lilian = "X"
 
-    </>
+
+
+  function marca(id: number) {
+
+
+    if (tabela[id] === "") {
+      tabela[id] = lilian
+    } else {
+      return
+    }
+
+    if (lilian == "X") {
+      lilian = "O"
+    } else {
+      lilian = "X"
+    }
+    render()
+  }
+
+  function render() {
+    let tds = document.querySelectorAll("td")
+    for (let lops = 0; lops < 9; lops++) {
+      tds[lops].innerHTML = tabela[lops]
+    }
+  }
+  return (
+    <table className="flex justify-center">
+      <tbody className="flex flex-col  ">
+        <tr className="justify-center">
+          <td onClick={(e) => marca(0)} className="bg-black border text-white border-white hover:scale-110  h-20 text-3xl text-center w-20 cursor-pointer transition">{tabela[0]}</td>
+          <td onClick={(e) => marca(1)} className="bg-black border text-white border-white hover:scale-110  h-20 text-3xl text-center w-20 cursor-pointer transition">{tabela[2]}</td>
+          <td onClick={(e) => marca(2)} className="bg-black border text-white border-white hover:scale-110  h-20 text-3xl text-center w-20 cursor-pointer transition"></td>
+        </tr>
+        <tr>
+          <td onClick={(e) => marca(3)} className="bg-black border text-white border-white   hover:scale-110  h-20 text-3xl text-center w-20 cursor-pointer transition"></td>
+          <td onClick={(e) => marca(4)} className="bg-black border text-white border-white   hover:scale-110  h-20 text-3xl text-center w-20 cursor-pointer transition"></td>
+          <td onClick={(e) => marca(5)} className="bg-black border text-white border-white   hover:scale-110  h-20 text-3xl text-center w-20 cursor-pointer transition"></td>
+        </tr>
+        <tr>
+          <td onClick={(e) => marca(6)} className="bg-black border text-white border-white  hover:scale-110  h-20 text-3xl text-center w-20 cursor-pointer transition"></td>
+          <td onClick={(e) => marca(7)} className="bg-black border text-white border-white  hover:scale-110  h-20 text-3xl text-center w-20 cursor-pointer transition"></td>
+          <td onClick={(e) => marca(8)} className="bg-black border text-white border-white  hover:scale-110  h-20 text-3xl text-center w-20 cursor-pointer transition"></td>
+        </tr>
+      </tbody>
+    </table>
   )
- }
+}
